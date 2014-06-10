@@ -1,0 +1,141 @@
+
+<nav class="navbar navbar-inverse" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-9">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Brand</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container" id="github-app">  
+</div>
+
+
+<script type="text/x-handlebars" data-template-name="application">
+  <div class="row">
+    <div class="col-md-12" >       
+       {{ outlet }}       
+    </div>   
+  </div>
+  
+</script>
+
+<script type="text/x-handlebars" data-template-name="index">
+
+  <h1>Github Namshub</h1>
+  <hr>
+  
+  <p>Welcome to my place, bitch</p>
+  
+  <ul>
+    {{#each}}
+    <li>{{#link-to 'user' this.login}}{{name}}{{/link-to}}</li>
+    {{/each}}
+  </ul>
+  
+</script>
+
+<script type="text/x-handlebars" data-template-name="user">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="well">
+        <p class="text-center">
+          {{#link-to 'user' this}}
+            <img {{bind-attr src=avatar_url}} style="width: 140px;" />
+          {{/link-to}}
+        </p>
+        <h4>{{#link-to 'user' this}}{{name}}{{/link-to}}</h4>
+        <p>
+          {{company}} <br/>
+          {{location}} <br/>
+          {{email}} <br/>
+        </p>
+        <hr/>
+        <table class="table table-striped">
+          <tr>
+            <td>Followers:</td><td>{{followers}}</td>
+          </tr>
+          <tr>
+            <td>Repositors: </td><td>{{public_repos}}</td>
+          </tr>
+          <tr>
+            <td>Gists: </td><td>{{public_gists}}</td>
+          </tr>
+        </table>
+        <p>
+          {{#link-to "index"}}Back{{/link-to}}
+        </p>
+      </div>
+    </div>
+    
+    <div class="col-md-8">
+      {{outlet}}
+    </div>
+    
+    
+  </div>
+  
+  
+  
+  
+</script>
+
+<script type="text/x-handlebars" data-template-name="user/index">
+  <h2>{{name}}'s Github</h2>
+      <ul>
+        <li>{{#link-to 'repositories' this}}Repositories{{/link-to}}</li>
+        <li><a href="#">News and Events</a></li>
+        <li><a href="#">Gists</a></li>
+      </ul>
+</script>
+
+<script type="text/x-handlebars" data-template-name="repositories">
+  <ol class="breadcrumb">
+    <li>{{#link-to 'index'}}Devs{{/link-to}}</li>
+    <li>{{#link-to 'user' user}}{{user.name}}{{/link-to}}</li>
+    <li><a href="#">Repository</a></li>
+  </ol>
+
+  <table class="table table-striped">
+    {{#each}}
+    <tr>
+      <td>
+        <h4>{{#link-to 'repository' this}}{{name}}{{/link-to}}</h4>
+      </td>
+    </tr>
+    {{/each}}
+  </table>
+</script>
+
+<script type="text/x-handlebars" data-template-name="repositories">
+  <h1>{{name}} Repo</h1>
+</script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
